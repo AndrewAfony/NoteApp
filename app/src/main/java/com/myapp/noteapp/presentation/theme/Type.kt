@@ -1,4 +1,4 @@
-package com.myapp.noteapp.ui.theme
+package com.myapp.noteapp.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
