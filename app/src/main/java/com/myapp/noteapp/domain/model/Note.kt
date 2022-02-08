@@ -3,6 +3,7 @@ package com.myapp.noteapp.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.myapp.noteapp.presentation.theme.*
+import java.lang.Exception
 
 @Entity
 data class Note(
@@ -18,3 +19,5 @@ data class Note(
         )
     }
 }
+
+class InvalidNoteException(message: String): Exception(message)
