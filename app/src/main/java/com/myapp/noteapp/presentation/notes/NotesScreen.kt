@@ -8,14 +8,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.myapp.noteapp.presentation.Screen
 import com.myapp.noteapp.presentation.notes.components.NoteItem
 import com.myapp.noteapp.presentation.notes.components.OrderSection
 import kotlinx.coroutines.launch
@@ -33,12 +36,13 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = { navController.navigate(Screen.AddEditNoteScreen.route)},
                 backgroundColor = MaterialTheme.colors.primary
             ) {
                 Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add note"
+                    Icons.Default.Add,
+                    contentDescription = "Add note",
+                    tint = Color.Black
                 )
             }
         },
@@ -88,7 +92,9 @@ fun NotesScreen(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { },
+                            .clickable {
+                                navController.navigate(Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}")
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
